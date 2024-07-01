@@ -20,13 +20,13 @@ const SearchComponent: React.FC = () => {
   };
 
   return (
-    <div className="container mx-auto bg-bg dark:bg-darkBg pt-10 font-mono text-text dark:text-darkText">
+    <div className="container mx-auto bg-bg dark:bg-darkBg pt-10 font-mono text-text dark:text-darkText pb-6 mt-6">
       <div className="flex items-center justify-between">
         <ArrowLeftIcon
           className="w-6 h-6 text-main cursor-pointer"
           onClick={handleBack}
         />
-        <h1 className="text-3xl font-bold">useDebounce Hook</h1>
+        <h1 className="text-3xl font-bold">useDebounce</h1>
         <div></div>
       </div>
       <p className="mt-1 mb-4 text-lg">
@@ -34,21 +34,21 @@ const SearchComponent: React.FC = () => {
         stopped typing for a specified interval.
       </p>
 
-      <table className="table-fixed w-full mb-4 text-lg">
+      <table className="table-fixed w-full mb-4 text-lg border border-border dark:border-darkBorder">
         <thead>
-          <tr className="bg-gray-300 dark:bg-gray-700">
+          <tr className="bg-gray-300 dark:bg-gray-700 border-b border-border dark:border-darkBorder">
             <th className="w-1/4 p-2">Parameter</th>
             <th className="w-1/2 p-2">Description</th>
             <th className="w-1/4 p-2">Type</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
+          <tr className="border-b border-border dark:border-darkBorder">
             <td className="p-2">value</td>
             <td className="p-2">The value to be debounced.</td>
-            <td className="p-2">T</td>
+            <td className="p-2">any</td>
           </tr>
-          <tr>
+          <tr className="border-b border-border dark:border-darkBorder">
             <td className="p-2">delay</td>
             <td className="p-2">
               The delay in milliseconds before the value is updated.
