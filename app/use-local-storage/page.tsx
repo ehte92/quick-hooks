@@ -5,6 +5,16 @@ import React, { useState } from 'react';
 import { ArrowLeftIcon } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '@/components/ui/table';
 import useLocalStorage from '@/hooks/useLocalStorage';
 
 const LocalStorageComponent: React.FC = () => {
@@ -32,10 +42,12 @@ const LocalStorageComponent: React.FC = () => {
   return (
     <div className="container mx-auto bg-bg dark:bg-darkBg p-4 font-mono text-text dark:text-darkText">
       <div className="flex items-center justify-between">
-        <ArrowLeftIcon
-          className="w-6 h-6 text-main cursor-pointer"
+        <div
+          className="bg-main cursor-pointer p-2 border-2 border-border dark:border-darkBorder shadow-light dark:shadow-dark hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none dark:hover:shadow-none"
           onClick={handleBack}
-        />
+        >
+          <ArrowLeftIcon className="w-6 h-6" />
+        </div>
         <h1 className="text-3xl font-bold">useLocalStorage</h1>
         <div></div>
       </div>
@@ -45,53 +57,47 @@ const LocalStorageComponent: React.FC = () => {
       </p>
 
       <h2 className="text-2xl font-bold">Parameters and Return Values</h2>
-      <table className="table-auto w-full my-4 text-lg">
-        <thead className="bg-gray-300 dark:bg-gray-700">
-          <tr>
-            <th className="px-4 py-2">Parameter</th>
-            <th className="px-4 py-2">Type</th>
-            <th className="px-4 py-2">Description</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td className="border px-4 py-2">key</td>
-            <td className="border px-4 py-2">string</td>
-            <td className="border px-4 py-2">
+      <Table className="table-auto w-full my-4 text-lg shadow-light dark:shadow-dark">
+        <TableHeader>
+          <TableRow>
+            <TableHead className="border px-4 py-2">Parameter</TableHead>
+            <TableHead className="border px-4 py-2">Type</TableHead>
+            <TableHead className="border px-4 py-2">Description</TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          <TableRow>
+            <TableCell className="border px-4 py-2">key</TableCell>
+            <TableCell className="border px-4 py-2">string</TableCell>
+            <TableCell className="border px-4 py-2">
               The key under which the value is stored in localStorage.
-            </td>
-          </tr>
-          <tr>
-            <td className="border px-4 py-2">initialValue</td>
-            <td className="border px-4 py-2">T</td>
-            <td className="border px-4 py-2">
+            </TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell className="border px-4 py-2">initialValue</TableCell>
+            <TableCell className="border px-4 py-2">any</TableCell>
+            <TableCell className="border px-4 py-2">
               The initial value to use if there is no item in localStorage under
               the key.
-            </td>
-          </tr>
-        </tbody>
-      </table>
+            </TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
       <div className="mb-4">
         <div className="flex items-center">
-          <input
+          <Input
             type="text"
             value={input}
             onChange={(e) => setInput(e.target.value)}
             placeholder="Type something..."
-            className="border border-border dark:border-darkBorder p-2 mr-2 text-lg"
+            className="p-2 mr-2 text-lg shadow-light dark:shadow-dark"
           />
-          <button
-            onClick={handleSave}
-            className="bg-main dark:bg-accent p-2 text-white mr-2"
-          >
+          <Button onClick={handleSave} className="mr-2">
             Save to Local Storage
-          </button>
-          <button
-            onClick={handleClear}
-            className="bg-destructive dark:bg-destructive p-2 text-white"
-          >
+          </Button>
+          <Button onClick={handleClear} variant="destructive">
             Clear Local Storage
-          </button>
+          </Button>
         </div>
         <div className="text-lg mt-4">
           <strong>Stored Value:</strong> {storedValue || 'No value saved yet!'}
@@ -99,7 +105,7 @@ const LocalStorageComponent: React.FC = () => {
       </div>
 
       <h2 className="text-2xl font-bold mt-6">Example Usage</h2>
-      <pre className="bg-gray-200 dark:bg-gray-800 p-3 rounded text-sm">
+      <pre className="bg-gray-200 dark:bg-gray-800 p-3 rounded text-sm shadow-light dark:shadow-dark">
         {`
 import { useState } from 'react';
 import useLocalStorage from '@/hooks/useLocalStorage';

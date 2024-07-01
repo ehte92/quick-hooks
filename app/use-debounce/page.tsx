@@ -2,12 +2,18 @@
 
 import React, { useState } from 'react';
 
-// Ensure your path is correct
 import { ArrowLeftIcon, SearchIcon, X } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 
 import { Input } from '@/components/ui/input';
-// Ensure the icons are correctly imported
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '@/components/ui/table';
 import useDebounce from '@/hooks/useDebounce';
 
 const SearchComponent: React.FC = () => {
@@ -22,10 +28,12 @@ const SearchComponent: React.FC = () => {
   return (
     <div className="container mx-auto bg-bg dark:bg-darkBg pt-10 font-mono text-text dark:text-darkText pb-6 mt-6">
       <div className="flex items-center justify-between">
-        <ArrowLeftIcon
-          className="w-6 h-6 text-main cursor-pointer"
+        <div
+          className="bg-main cursor-pointer p-2 border-2 border-border dark:border-darkBorder shadow-light dark:shadow-dark hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none dark:hover:shadow-none"
           onClick={handleBack}
-        />
+        >
+          <ArrowLeftIcon className="w-6 h-6" />
+        </div>
         <h1 className="text-3xl font-bold">useDebounce</h1>
         <div></div>
       </div>
@@ -34,29 +42,31 @@ const SearchComponent: React.FC = () => {
         stopped typing for a specified interval.
       </p>
 
-      <table className="table-fixed w-full mb-4 text-lg border border-border dark:border-darkBorder">
-        <thead>
-          <tr className="bg-gray-300 dark:bg-gray-700 border-b border-border dark:border-darkBorder">
-            <th className="w-1/4 p-2">Parameter</th>
-            <th className="w-1/2 p-2">Description</th>
-            <th className="w-1/4 p-2">Type</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr className="border-b border-border dark:border-darkBorder">
-            <td className="p-2">value</td>
-            <td className="p-2">The value to be debounced.</td>
-            <td className="p-2">any</td>
-          </tr>
-          <tr className="border-b border-border dark:border-darkBorder">
-            <td className="p-2">delay</td>
-            <td className="p-2">
+      <Table className="table-fixed w-full mb-4 text-lg shadow-light dark:shadow-dark">
+        <TableHeader>
+          <TableRow>
+            <TableHead className="border px-4 py-2">Parameter</TableHead>
+            <TableHead className="border px-4 py-2">Description</TableHead>
+            <TableHead className="border px-4 py-2">Type</TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          <TableRow>
+            <TableCell className="border px-4 py-2">value</TableCell>
+            <TableCell className="border px-4 py-2">
+              The value to be debounced.
+            </TableCell>
+            <TableCell className="border px-4 py-2">any</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell className="border px-4 py-2">delay</TableCell>
+            <TableCell className="border px-4 py-2">
               The delay in milliseconds before the value is updated.
-            </td>
-            <td className="p-2">number</td>
-          </tr>
-        </tbody>
-      </table>
+            </TableCell>
+            <TableCell className="border px-4 py-2">number</TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
 
       <h2 className="text-2xl font-bold">Example</h2>
       <div className="relative my-4">
@@ -65,7 +75,7 @@ const SearchComponent: React.FC = () => {
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           placeholder="Type here to search..."
-          className="pl-10 pr-10 w-full text-xl border border-border dark:border-darkBorder"
+          className="pl-10 pr-10 w-full text-xl shadow-light dark:shadow-dark"
         />
         <SearchIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 text-xl" />
         {searchTerm && (
@@ -82,7 +92,7 @@ const SearchComponent: React.FC = () => {
         <strong>Debounced Input:</strong> {debouncedSearchTerm}
       </div>
 
-      <pre className="bg-gray-200 dark:bg-gray-800 p-3 rounded">
+      <pre className="bg-gray-200 dark:bg-gray-800 p-3 rounded shadow-light dark:shadow-dark text-sm">
         {`const debouncedValue = useDebounce(inputValue, delay);`}
       </pre>
     </div>
