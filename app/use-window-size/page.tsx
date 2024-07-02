@@ -5,6 +5,7 @@ import React from 'react';
 import { ArrowLeftIcon } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 
+import BackButton from '@/components/ui/back-button';
 import {
   Table,
   TableBody,
@@ -27,12 +28,7 @@ const WindowSizeComponent: React.FC = () => {
   return (
     <div className="container mx-auto bg-bg dark:bg-darkBg p-4 font-mono text-text dark:text-darkText">
       <div className="flex items-center justify-between">
-        <div
-          className="bg-main cursor-pointer p-2 border-2 border-border dark:border-darkBorder shadow-light dark:shadow-dark hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none dark:hover:shadow-none"
-          onClick={handleBack}
-        >
-          <ArrowLeftIcon className="w-6 h-6" />
-        </div>
+        <BackButton />
         <h1 className="text-3xl font-bold">useWindowSize</h1>
         <div></div>
       </div>
@@ -69,7 +65,7 @@ const WindowSizeComponent: React.FC = () => {
       </Table>
 
       <h2 className="text-2xl font-bold">Current Window Size</h2>
-      <div className="bg-gray-200 dark:bg-gray-800 p-3 rounded shadow-light dark:shadow-dark mb-4 text-lg">
+      <div className="bg-main p-3 shadow-light dark:shadow-dark mb-4 text-lg">
         <p>
           <strong>Width:</strong> {width || 'Loading...'} pixels
         </p>
@@ -79,7 +75,7 @@ const WindowSizeComponent: React.FC = () => {
       </div>
 
       <h2 className="text-2xl font-bold mt-6">Example Usage</h2>
-      <div className="bg-gray-200 dark:bg-gray-800 p-3 rounded text-sm shadow-light dark:shadow-dark">
+      <div className="bg-main p-3 text-sm shadow-light dark:shadow-dark">
         <pre>
           {`
 import React from 'react';

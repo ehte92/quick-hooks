@@ -2,9 +2,7 @@
 
 import React, { useState } from 'react';
 
-import { ArrowLeftIcon } from 'lucide-react';
-import { useRouter } from 'next/navigation';
-
+import BackButton from '@/components/ui/back-button';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import {
@@ -20,12 +18,6 @@ import useLocalStorage from '@/hooks/useLocalStorage';
 const LocalStorageComponent: React.FC = () => {
   const [input, setInput] = useState('');
   const [storedValue, setStoredValue] = useLocalStorage('myValue', '');
-  const router = useRouter();
-
-  // Navigate back to the previous page
-  const handleBack = () => {
-    router.back();
-  };
 
   // Save input to local storage and clear input field
   const handleSave = () => {
@@ -42,12 +34,7 @@ const LocalStorageComponent: React.FC = () => {
   return (
     <div className="container mx-auto bg-bg dark:bg-darkBg p-4 font-mono text-text dark:text-darkText">
       <div className="flex items-center justify-between">
-        <div
-          className="bg-main cursor-pointer p-2 border-2 border-border dark:border-darkBorder shadow-light dark:shadow-dark hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none dark:hover:shadow-none"
-          onClick={handleBack}
-        >
-          <ArrowLeftIcon className="w-6 h-6" />
-        </div>
+        <BackButton />
         <h1 className="text-3xl font-bold">useLocalStorage</h1>
         <div></div>
       </div>
@@ -105,7 +92,7 @@ const LocalStorageComponent: React.FC = () => {
       </div>
 
       <h2 className="text-2xl font-bold mt-6">Example Usage</h2>
-      <pre className="bg-gray-200 dark:bg-gray-800 p-3 rounded text-sm shadow-light dark:shadow-dark">
+      <pre className="bg-main p-3 text-sm shadow-light dark:shadow-dark">
         {`
 import { useState } from 'react';
 import useLocalStorage from '@/hooks/useLocalStorage';

@@ -5,6 +5,7 @@ import React, { useState } from 'react';
 import { ArrowLeftIcon, SearchIcon, X } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 
+import BackButton from '@/components/ui/back-button';
 import { Input } from '@/components/ui/input';
 import {
   Table,
@@ -28,12 +29,7 @@ const SearchComponent: React.FC = () => {
   return (
     <div className="container mx-auto bg-bg dark:bg-darkBg pt-10 font-mono text-text dark:text-darkText pb-6 mt-6">
       <div className="flex items-center justify-between">
-        <div
-          className="bg-main cursor-pointer p-2 border-2 border-border dark:border-darkBorder shadow-light dark:shadow-dark hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none dark:hover:shadow-none"
-          onClick={handleBack}
-        >
-          <ArrowLeftIcon className="w-6 h-6" />
-        </div>
+        <BackButton />
         <h1 className="text-3xl font-bold">useDebounce</h1>
         <div></div>
       </div>
@@ -92,7 +88,7 @@ const SearchComponent: React.FC = () => {
         <strong>Debounced Input:</strong> {debouncedSearchTerm}
       </div>
 
-      <pre className="bg-gray-200 dark:bg-gray-800 p-3 rounded shadow-light dark:shadow-dark text-sm">
+      <pre className="bg-main p-3 rounded shadow-light dark:shadow-dark text-sm">
         {`const debouncedValue = useDebounce(inputValue, delay);`}
       </pre>
     </div>
