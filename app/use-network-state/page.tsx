@@ -100,7 +100,7 @@ const NetworkStateComponent: React.FC = () => {
       </div>
 
       <h2 className="text-2xl font-bold mt-6">Example Usage</h2>
-      <pre className="bg-gray-200 dark:bg-gray-800 p-3 text-sm shadow-light dark:shadow-dark">
+      <pre className="bg-main p-3 text-sm shadow-light dark:shadow-dark">
         {`
 import React from 'react';
 import useNetworkState from './useNetworkState';
