@@ -15,6 +15,7 @@ const websites = [
   'useintersectionobserver',
   'usenetworkstate',
   'usemediaquery',
+  'useorientation',
 ];
 
 const LINKS: { [key in SocialMedia]: Link } = {
@@ -59,6 +60,12 @@ const LINKS: { [key in SocialMedia]: Link } = {
     // icon: instagram,
     link: '/use-media-query',
     text: 'a hook to get media query changes',
+  },
+  useorientation: {
+    title: 'useOrientation',
+    // icon: linkedin,
+    link: '/use-orientation',
+    text: 'a hook to get the device orientation',
   },
 };
 
