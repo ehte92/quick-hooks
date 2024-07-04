@@ -14,6 +14,7 @@ const websites = [
   'useprevious',
   'useintersectionobserver',
   'usenetworkstate',
+  'usemediaquery',
 ];
 
 const LINKS: { [key in SocialMedia]: Link } = {
@@ -52,6 +53,12 @@ const LINKS: { [key in SocialMedia]: Link } = {
     // icon: gumroad,
     link: '/use-network-state',
     text: 'a hook to get the network status',
+  },
+  usemediaquery: {
+    title: 'useMediaQuery',
+    // icon: instagram,
+    link: '/use-media-query',
+    text: 'a hook to get media query changes',
   },
 };
 
