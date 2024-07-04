@@ -39,7 +39,7 @@ const WindowSizeComponent: React.FC = () => {
 
       <h2 className="text-2xl font-bold">Parameters and Return Values</h2>
       <Table className="table-auto w-full my-4 text-lg shadow-light dark:shadow-dark">
-        <TableHeader className="bg-gray-300 dark:bg-gray-700">
+        <TableHeader>
           <TableRow>
             <TableHead className="border px-4 py-2">Return</TableHead>
             <TableHead className="border px-4 py-2">Type</TableHead>
