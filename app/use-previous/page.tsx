@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 
 import CodeBlock from '@/components/code-block';
 import LayoutPage from '@/components/layout-page';
+import Heading from '@/components/ui/heading';
 import {
   Select,
   SelectContent,
@@ -58,8 +59,8 @@ export default FavoriteColorComponent;
         its current state.
       </p>
 
-      <h2 className="text-2xl font-bold">Parameters and Return Values</h2>
-      <Table className="table-auto w-full my-4 text-lg border shadow-light dark:shadow-dark">
+      <Heading>Parameters and Return Values</Heading>
+      <Table className="table-auto w-full my-4 text-lg shadow-light dark:shadow-dark">
         <TableHeader>
           <TableRow>
             <TableHead className="border px-4 py-2">Parameter</TableHead>
@@ -86,7 +87,7 @@ export default FavoriteColorComponent;
         </TableBody>
       </Table>
 
-      <h2 className="text-2xl font-bold">Live Example</h2>
+      <Heading>Live Example</Heading>
       <div
         className={`bg-${color}-500 mb-4 rounded-base border shadow-light dark:shadow-dark p-4`}
       >
@@ -134,7 +135,7 @@ export default FavoriteColorComponent;
         </div>
       </div>
 
-      <h2 className="text-2xl font-bold mt-6">Example Usage</h2>
+      <Heading className="mt-6">Example Usage</Heading>
       <CodeBlock code={code} />
     </LayoutPage>
   );

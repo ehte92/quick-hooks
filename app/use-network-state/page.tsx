@@ -4,6 +4,7 @@ import React from 'react';
 
 import CodeBlock from '@/components/code-block';
 import LayoutPage from '@/components/layout-page';
+import Heading from '@/components/ui/heading';
 import {
   Table,
   TableBody,
@@ -45,7 +46,7 @@ export default NetworkStateComponent;
         real-time network status and metrics.
       </p>
 
-      <h2 className="text-2xl font-bold">Return Values</h2>
+      <Heading>Return Values</Heading>
       <Table className="table-auto w-full my-4 text-lg shadow-light dark:shadow-dark">
         <TableHeader>
           <TableRow>
@@ -94,7 +95,7 @@ export default NetworkStateComponent;
         </TableBody>
       </Table>
 
-      <h2 className="text-2xl font-bold">Network Status</h2>
+      <Heading>Network Status</Heading>
       <div className="bg-main rounded-base mb-4 text-lg p-3 border shadow-light dark:shadow-dark">
         <p>
           <strong>Online:</strong> {networkState.online ? 'Yes' : 'No'}
@@ -116,7 +117,7 @@ export default NetworkStateComponent;
         </p>
       </div>
 
-      <h2 className="text-2xl font-bold mt-6">Example Usage</h2>
+      <Heading className="mt-6">Example Usage</Heading>
       <CodeBlock code={code} />
     </LayoutPage>
   );

@@ -4,6 +4,7 @@ import React from 'react';
 
 import CodeBlock from '@/components/code-block';
 import LayoutPage from '@/components/layout-page';
+import Heading from '@/components/ui/heading';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import {
   Table,
@@ -46,7 +47,7 @@ export default VisibilityComponent;
         settings.
       </p>
 
-      <h2 className="text-2xl font-bold">Parameters</h2>
+      <Heading>Parameters</Heading>
       <Table className="table-auto w-full my-4 text-lg shadow-light dark:shadow-dark">
         <TableHeader>
           <TableRow>
@@ -118,7 +119,7 @@ export default VisibilityComponent;
         </TableBody>
       </Table>
 
-      <h2 className="text-2xl font-bold">Live Example</h2>
+      <Heading>Live Example</Heading>
       <div className="flex items-center justify-center">
         <ScrollArea className="h-[400px] w-[550px] text-text border-2 border-border dark:border-darkBorder bg-main p-4 rounded-base shadow-light dark:shadow-dark">
           <div
@@ -156,7 +157,7 @@ export default VisibilityComponent;
         </ScrollArea>
       </div>
 
-      <h2 className="text-2xl font-bold mt-6">Example Usage</h2>
+      <Heading className="mt-6">Example Usage</Heading>
       <CodeBlock code={code} />
     </LayoutPage>
   );

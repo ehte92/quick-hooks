@@ -6,6 +6,7 @@ import { Compass } from 'lucide-react';
 
 import CodeBlock from '@/components/code-block';
 import LayoutPage from '@/components/layout-page';
+import Heading from '@/components/ui/heading';
 import {
   Table,
   TableBody,
@@ -54,7 +55,7 @@ export default OrientationComponent;
         orientation. Rotate your device to see the compass icon rotate.
       </p>
 
-      <h2 className="text-2xl font-bold">Return Values</h2>
+      <Heading>Return Values</Heading>
       <Table className="table-auto w-full my-4 text-lg shadow-light dark:shadow-dark">
         <TableHeader>
           <TableRow>
@@ -82,7 +83,7 @@ export default OrientationComponent;
         </TableBody>
       </Table>
 
-      <h2 className="text-2xl font-bold">Live Example</h2>
+      <Heading>Live Example</Heading>
       <div className="mb-4 text-lg">
         <div className="flex justify-center items-center h-48 w-full bg-main rounded-base p-5 mb-2 border shadow-light dark:shadow-dark">
           <Compass size={48} style={getRotationStyle()} />
@@ -95,7 +96,7 @@ export default OrientationComponent;
         </p>
       </div>
 
-      <h2 className="text-2xl font-bold mt-6">Example Usage</h2>
+      <Heading className="mt-6">Example Usage</Heading>
       <CodeBlock code={code} />
     </LayoutPage>
   );

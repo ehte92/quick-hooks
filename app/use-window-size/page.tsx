@@ -5,6 +5,7 @@ import React from 'react';
 import CodeBlock from '@/components/code-block';
 import LayoutPage from '@/components/layout-page';
 import BackButton from '@/components/ui/back-button';
+import Heading from '@/components/ui/heading';
 import {
   Table,
   TableBody,
@@ -44,8 +45,8 @@ export default ResponsiveComponent;
         updating in real-time as the window is resized.
       </p>
 
-      <h2 className="text-2xl font-bold">Parameters and Return Values</h2>
-      <Table className="table-auto w-full my-4 text-lg border shadow-light dark:shadow-dark">
+      <Heading>Return Values</Heading>
+      <Table className="table-auto w-full my-4 text-lg shadow-light dark:shadow-dark">
         <TableHeader>
           <TableRow>
             <TableHead className="border px-4 py-2">Return</TableHead>
@@ -71,7 +72,7 @@ export default ResponsiveComponent;
         </TableBody>
       </Table>
 
-      <h2 className="text-2xl font-bold">Current Window Size</h2>
+      <Heading>Current Window Size</Heading>
       <div className="bg-main p-3 rounded-base border shadow-light dark:shadow-dark mb-4 text-lg">
         <p>
           <strong>Width:</strong> {width || 'Loading...'} pixels
@@ -81,7 +82,7 @@ export default ResponsiveComponent;
         </p>
       </div>
 
-      <h2 className="text-2xl font-bold mt-6">Example Usage</h2>
+      <Heading className="mt-6">Example Usage</Heading>
       <CodeBlock code={code} />
     </LayoutPage>
   );

@@ -6,6 +6,7 @@ import { SearchIcon, X } from 'lucide-react';
 
 import CodeBlock from '@/components/code-block';
 import LayoutPage from '@/components/layout-page';
+import Heading from '@/components/ui/heading';
 import { Input } from '@/components/ui/input';
 import {
   Table,
@@ -30,7 +31,7 @@ const SearchComponent: React.FC = () => {
         stopped typing for a specified interval.
       </p>
 
-      <Table className="table-fixed w-full mb-4 text-lg border shadow-light dark:shadow-dark">
+      <Table className="table-fixed w-full mb-4 text-lg shadow-light dark:shadow-dark">
         <TableHeader>
           <TableRow>
             <TableHead className="border px-4 py-2">Parameter</TableHead>
@@ -56,7 +57,7 @@ const SearchComponent: React.FC = () => {
         </TableBody>
       </Table>
 
-      <h2 className="text-2xl font-bold">Example</h2>
+      <Heading>Example</Heading>
       <div className="relative my-4">
         <Input
           type="text"
@@ -80,6 +81,7 @@ const SearchComponent: React.FC = () => {
         <strong>Debounced Input:</strong> {debouncedSearchTerm}
       </div>
 
+      <Heading className="mt-6">Example Usage</Heading>
       <CodeBlock code={code} />
     </LayoutPage>
   );

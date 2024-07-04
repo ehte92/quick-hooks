@@ -5,6 +5,7 @@ import React, { useState } from 'react';
 import CodeBlock from '@/components/code-block';
 import LayoutPage from '@/components/layout-page';
 import { Button } from '@/components/ui/button';
+import Heading from '@/components/ui/heading';
 import { Input } from '@/components/ui/input';
 import {
   Table,
@@ -76,7 +77,7 @@ export default LocalStorageComponent;
       </p>
 
       <h2 className="text-2xl font-bold">Parameters and Return Values</h2>
-      <Table className="table-auto w-full my-4 text-lg border shadow-light dark:shadow-dark">
+      <Table className="table-auto w-full my-4 text-lg shadow-light dark:shadow-dark">
         <TableHeader>
           <TableRow>
             <TableHead className="border px-4 py-2">Parameter</TableHead>
@@ -123,7 +124,7 @@ export default LocalStorageComponent;
         </div>
       </div>
 
-      <h2 className="text-2xl font-bold mt-6">Example Usage</h2>
+      <Heading className="mt-6">Example Usage</Heading>
       <CodeBlock code={code} />
     </LayoutPage>
   );

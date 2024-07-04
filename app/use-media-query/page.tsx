@@ -4,6 +4,7 @@ import React from 'react';
 
 import CodeBlock from '@/components/code-block';
 import LayoutPage from '@/components/layout-page';
+import Heading from '@/components/ui/heading';
 import {
   Table,
   TableBody,
@@ -45,7 +46,7 @@ export default MediaQueryComponent;
         viewport size.
       </p>
 
-      <h2 className="text-2xl font-bold">Parameters</h2>
+      <Heading>Parameters</Heading>
       <Table className="table-auto w-full my-4 text-lg shadow-light dark:shadow-dark">
         <TableHeader>
           <TableRow>
@@ -65,7 +66,7 @@ export default MediaQueryComponent;
         </TableBody>
       </Table>
 
-      <h2 className="text-2xl font-bold">Return Values</h2>
+      <Heading>Return Values</Heading>
       <Table className="table-auto w-full my-4 text-lg shadow-light dark:shadow-dark">
         <TableHeader>
           <TableRow>
@@ -84,7 +85,7 @@ export default MediaQueryComponent;
         </TableBody>
       </Table>
 
-      <h2 className="text-2xl font-bold">Live Example</h2>
+      <Heading>Live Example</Heading>
       <div className="text-lg p-4">
         <div
           className={`p-4 ${isDesktop ? 'bg-blue-500' : isTablet ? 'bg-green-500' : 'bg-red-500'} transition-all duration-500 rounded-base border shadow-light dark:shadow-dark`}
@@ -104,7 +105,7 @@ export default MediaQueryComponent;
         </div>
       </div>
 
-      <h2 className="text-2xl font-bold mt-6">Example Usage</h2>
+      <Heading className="mt-6">Example Usage</Heading>
       <CodeBlock code={code} />
     </LayoutPage>
   );
