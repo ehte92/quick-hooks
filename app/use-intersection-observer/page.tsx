@@ -2,7 +2,8 @@
 
 import React from 'react';
 
-import BackButton from '@/components/ui/back-button';
+import CodeBlock from '@/components/code-block';
+import LayoutPage from '@/components/layout-page';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import {
   Table,
@@ -19,13 +20,25 @@ const VisibilityComponent: React.FC = () => {
   const [ref2, isVisible2] = useIntersectionObserver({ threshold: 0.5 });
   const [ref3, isVisible3] = useIntersectionObserver({ threshold: 0.9 });
 
+  const code = `
+import React from 'react';
+import useIntersectionObserver from './useIntersectionObserver';
+
+const VisibilityComponent = () => {
+    const [ref, isVisible] = useIntersectionObserver({threshold: 0.5});
+
+    return (
+        <div ref={ref}>
+            {isVisible ? 'Visible in the viewport!' : 'Scroll to see me!'}
+        </div>
+    );
+};
+
+export default VisibilityComponent;
+                `;
+
   return (
-    <div className="container mx-auto bg-bg dark:bg-darkBg p-4 font-mono text-text dark:text-darkText">
-      <div className="flex items-center justify-between">
-        <BackButton />
-        <h1 className="text-3xl font-bold">useIntersectionObserver</h1>
-        <div></div>
-      </div>
+    <LayoutPage title="useIntersectionObserver">
       <p className="mt-1 mb-4 text-lg">
         This hook allows tracking the visibility of components in the viewport
         using the Intersection Observer API. Scroll to see the elements come
@@ -107,10 +120,10 @@ const VisibilityComponent: React.FC = () => {
 
       <h2 className="text-2xl font-bold">Live Example</h2>
       <div className="flex items-center justify-center">
-        <ScrollArea className="h-[400px] w-[550px] text-text border-2 border-border dark:border-darkBorder bg-main p-4 shadow-light dark:shadow-dark">
+        <ScrollArea className="h-[400px] w-[550px] text-text border-2 border-border dark:border-darkBorder bg-main p-4 rounded-base shadow-light dark:shadow-dark">
           <div
             ref={ref1}
-            className="h-64 border-2 border-blue-500 mb-8 flex items-center justify-center"
+            className="h-64 rounded-base border-2 border-blue-500 mb-8 flex items-center justify-center"
           >
             {isVisible1 ? (
               <p className="text-lg text-blue-500">Visible at 10% threshold!</p>
@@ -120,7 +133,7 @@ const VisibilityComponent: React.FC = () => {
           </div>
           <div
             ref={ref2}
-            className="h-64 border-2 border-accent mb-8 flex items-center justify-center"
+            className="h-64 rounded-base border-2 border-accent mb-8 flex items-center justify-center"
           >
             {isVisible2 ? (
               <p className="text-lg text-accent">Visible at 50% threshold!</p>
@@ -130,7 +143,7 @@ const VisibilityComponent: React.FC = () => {
           </div>
           <div
             ref={ref3}
-            className="h-64 border-2 border-destructive mb-8 flex items-center justify-center"
+            className="h-64 rounded-base border-2 border-destructive mb-8 flex items-center justify-center"
           >
             {isVisible3 ? (
               <p className="text-lg text-destructive">
@@ -144,25 +157,8 @@ const VisibilityComponent: React.FC = () => {
       </div>
 
       <h2 className="text-2xl font-bold mt-6">Example Usage</h2>
-      <pre className="bg-main p-3 text-sm shadow-light dark:shadow-dark">
-        {`
-import React from 'react';
-import useIntersectionObserver from './useIntersectionObserver';
-
-const VisibilityComponent = () => {
-    const [ref, isVisible] = useIntersectionObserver({threshold: 0.5});
-
-    return (
-        <div ref={ref}>
-            {isVisible ? 'Visible in the viewport!' : 'Scroll to see me!'}
-        </div>
-    );
-};
-
-export default VisibilityComponent;
-                `}
-      </pre>
-    </div>
+      <CodeBlock code={code} />
+    </LayoutPage>
   );
 };
 

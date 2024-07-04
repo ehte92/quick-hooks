@@ -2,10 +2,10 @@
 
 import React, { useState } from 'react';
 
-import { ArrowLeftIcon, SearchIcon, X } from 'lucide-react';
-import { useRouter } from 'next/navigation';
+import { SearchIcon, X } from 'lucide-react';
 
-import BackButton from '@/components/ui/back-button';
+import CodeBlock from '@/components/code-block';
+import LayoutPage from '@/components/layout-page';
 import { Input } from '@/components/ui/input';
 import {
   Table,
@@ -20,25 +20,17 @@ import useDebounce from '@/hooks/useDebounce';
 const SearchComponent: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const debouncedSearchTerm = useDebounce<string>(searchTerm, 500);
-  const router = useRouter();
 
-  const handleBack = () => {
-    router.back();
-  };
+  const code = `const debouncedValue = useDebounce(inputValue, delay);`;
 
   return (
-    <div className="container mx-auto bg-bg dark:bg-darkBg pt-10 font-mono text-text dark:text-darkText pb-6 mt-6">
-      <div className="flex items-center justify-between">
-        <BackButton />
-        <h1 className="text-3xl font-bold">useDebounce</h1>
-        <div></div>
-      </div>
+    <LayoutPage title="useDebounce">
       <p className="mt-1 mb-4 text-lg">
         This hook allows you to delay handling updates until the user has
         stopped typing for a specified interval.
       </p>
 
-      <Table className="table-fixed w-full mb-4 text-lg shadow-light dark:shadow-dark">
+      <Table className="table-fixed w-full mb-4 text-lg border shadow-light dark:shadow-dark">
         <TableHeader>
           <TableRow>
             <TableHead className="border px-4 py-2">Parameter</TableHead>
@@ -88,10 +80,8 @@ const SearchComponent: React.FC = () => {
         <strong>Debounced Input:</strong> {debouncedSearchTerm}
       </div>
 
-      <pre className="bg-main p-3 rounded shadow-light dark:shadow-dark text-sm">
-        {`const debouncedValue = useDebounce(inputValue, delay);`}
-      </pre>
-    </div>
+      <CodeBlock code={code} />
+    </LayoutPage>
   );
 };
 

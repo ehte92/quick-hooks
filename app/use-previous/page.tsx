@@ -2,7 +2,8 @@
 
 import React, { useState } from 'react';
 
-import BackButton from '@/components/ui/back-button';
+import CodeBlock from '@/components/code-block';
+import LayoutPage from '@/components/layout-page';
 import {
   Select,
   SelectContent,
@@ -26,20 +27,39 @@ const FavoriteColorComponent: React.FC = () => {
   const [color, setColor] = useState('red');
   const prevColor = usePrevious(color);
 
+  const code = `
+import React, { useState } from 'react';
+import usePrevious from './usePrevious';
+
+const FavoriteColorComponent = () => {
+  const [color, setColor] = useState('red');
+  const prevColor = usePrevious(color);
+
   return (
-    <div className="container mx-auto bg-bg dark:bg-darkBg p-4 font-mono text-text dark:text-darkText">
-      <div className="flex items-center justify-between">
-        <BackButton />
-        <h1 className="text-3xl font-bold">usePrevious</h1>
-        <div></div>
-      </div>
+    <div>
+      <select value={color} onChange={(e) => setColor(e.target.value)}>
+        <option value="red">Red</option>
+        <option value="blue">Blue</option>
+        ...
+      </select>
+      <p>Current Color: {color}</p>
+      <p>Previous Color: {prevColor}</p>
+    </div>
+  );
+};
+
+export default FavoriteColorComponent;
+                `;
+
+  return (
+    <LayoutPage title="usePrevious">
       <p className="mt-1 mb-4 text-lg">
         This hook captures the previous value of a variable for comparison with
         its current state.
       </p>
 
       <h2 className="text-2xl font-bold">Parameters and Return Values</h2>
-      <Table className="table-auto w-full my-4 text-lg shadow-light dark:shadow-dark">
+      <Table className="table-auto w-full my-4 text-lg border shadow-light dark:shadow-dark">
         <TableHeader>
           <TableRow>
             <TableHead className="border px-4 py-2">Parameter</TableHead>
@@ -67,7 +87,9 @@ const FavoriteColorComponent: React.FC = () => {
       </Table>
 
       <h2 className="text-2xl font-bold">Live Example</h2>
-      <div className={`bg-${color}-500 mb-4 shadow-light dark:shadow-dark p-4`}>
+      <div
+        className={`bg-${color}-500 mb-4 rounded-base border shadow-light dark:shadow-dark p-4`}
+      >
         <Select onValueChange={setColor} defaultValue={color}>
           <SelectTrigger className="w-[260px]">
             <SelectValue placeholder="Select your favorite color" />
@@ -113,32 +135,8 @@ const FavoriteColorComponent: React.FC = () => {
       </div>
 
       <h2 className="text-2xl font-bold mt-6">Example Usage</h2>
-      <pre className="bg-main p-3 text-sm shadow-light dark:shadow-dark">
-        {`
-import React, { useState } from 'react';
-import usePrevious from './usePrevious';
-
-const FavoriteColorComponent = () => {
-  const [color, setColor] = useState('red');
-  const prevColor = usePrevious(color);
-
-  return (
-    <div>
-      <select value={color} onChange={(e) => setColor(e.target.value)}>
-        <option value="red">Red</option>
-        <option value="blue">Blue</option>
-        ...
-      </select>
-      <p>Current Color: {color}</p>
-      <p>Previous Color: {prevColor}</p>
-    </div>
-  );
-};
-
-export default FavoriteColorComponent;
-                `}
-      </pre>
-    </div>
+      <CodeBlock code={code} />
+    </LayoutPage>
   );
 };
 

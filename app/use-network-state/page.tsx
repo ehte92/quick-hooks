@@ -2,7 +2,8 @@
 
 import React from 'react';
 
-import BackButton from '@/components/ui/back-button';
+import CodeBlock from '@/components/code-block';
+import LayoutPage from '@/components/layout-page';
 import {
   Table,
   TableBody,
@@ -16,13 +17,29 @@ import useNetworkState from '@/hooks/useNetworkState';
 const NetworkStateComponent: React.FC = () => {
   const networkState = useNetworkState();
 
+  const code = `
+import React from 'react';
+import useNetworkState from './useNetworkState';
+
+const NetworkStateComponent = () => {
+    const networkState = useNetworkState();
+
+    return (
+        <div>
+            <p>Online: {networkState.online ? 'Yes' : 'No'}</p>
+            <p>Since: {networkState.since?.toLocaleTimeString()}</p>
+            <p>Round-Trip Time: {networkState.rtt ?? 'Unavailable'} ms</p>
+            <p>Downlink: {networkState.downlink ?? 'Unavailable'} Mbps</p>
+            <p>Effective Network Type: {networkState.effectiveType ?? 'Unavailable'}</p>
+        </div>
+    );
+};
+
+export default NetworkStateComponent;
+                `;
+
   return (
-    <div className="container mx-auto bg-bg dark:bg-darkBg p-4 font-mono text-text dark:text-darkText">
-      <div className="flex items-center justify-between">
-        <BackButton />
-        <h1 className="text-3xl font-bold">useNetworkState</h1>
-        <div></div>
-      </div>
+    <LayoutPage title="useNetworkState">
       <p className="mt-1 mb-4 text-lg">
         Monitor and adapt to changes in network conditions. This hook provides
         real-time network status and metrics.
@@ -78,7 +95,7 @@ const NetworkStateComponent: React.FC = () => {
       </Table>
 
       <h2 className="text-2xl font-bold">Network Status</h2>
-      <div className="bg-main mb-4 text-lg p-3 shadow-light dark:shadow-dark">
+      <div className="bg-main rounded-base mb-4 text-lg p-3 border shadow-light dark:shadow-dark">
         <p>
           <strong>Online:</strong> {networkState.online ? 'Yes' : 'No'}
         </p>
@@ -100,29 +117,8 @@ const NetworkStateComponent: React.FC = () => {
       </div>
 
       <h2 className="text-2xl font-bold mt-6">Example Usage</h2>
-      <pre className="bg-main p-3 text-sm shadow-light dark:shadow-dark">
-        {`
-import React from 'react';
-import useNetworkState from './useNetworkState';
-
-const NetworkStateComponent = () => {
-    const networkState = useNetworkState();
-
-    return (
-        <div>
-            <p>Online: {networkState.online ? 'Yes' : 'No'}</p>
-            <p>Since: {networkState.since?.toLocaleTimeString()}</p>
-            <p>Round-Trip Time: {networkState.rtt ?? 'Unavailable'} ms</p>
-            <p>Downlink: {networkState.downlink ?? 'Unavailable'} Mbps</p>
-            <p>Effective Network Type: {networkState.effectiveType ?? 'Unavailable'}</p>
-        </div>
-    );
-};
-
-export default NetworkStateComponent;
-                `}
-      </pre>
-    </div>
+      <CodeBlock code={code} />
+    </LayoutPage>
   );
 };
 
