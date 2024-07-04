@@ -16,6 +16,7 @@ const websites = [
   'usenetworkstate',
   'usemediaquery',
   'useorientation',
+  'usesessionstorage',
 ];
 
 const LINKS: { [key in SocialMedia]: Link } = {
@@ -66,6 +67,12 @@ const LINKS: { [key in SocialMedia]: Link } = {
     // icon: linkedin,
     link: '/use-orientation',
     text: 'a hook to get the device orientation',
+  },
+  usesessionstorage: {
+    title: 'useSessionStorage',
+    // icon: medium,
+    link: '/use-session-storage',
+    text: 'a hook to persist data in session storage',
   },
 };
 
