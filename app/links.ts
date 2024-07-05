@@ -17,6 +17,7 @@ const websites = [
   'usemediaquery',
   'useorientation',
   'usesessionstorage',
+  'usefetch',
 ];
 
 const LINKS: { [key in SocialMedia]: Link } = {
@@ -73,6 +74,12 @@ const LINKS: { [key in SocialMedia]: Link } = {
     // icon: medium,
     link: '/use-session-storage',
     text: 'a hook to persist data in session storage',
+  },
+  usefetch: {
+    title: 'useFetch',
+    // icon: patreon,
+    link: '/use-fetch',
+    text: 'a hook to fetch data',
   },
 };
 
