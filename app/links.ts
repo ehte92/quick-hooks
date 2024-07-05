@@ -19,6 +19,7 @@ const websites = [
   'usesessionstorage',
   'usefetch',
   'usevisibilitychange',
+  'usescript',
 ];
 
 const LINKS: { [key in SocialMedia]: Link } = {
@@ -87,6 +88,12 @@ const LINKS: { [key in SocialMedia]: Link } = {
     // icon: paypal,
     link: '/use-visibility-change',
     text: 'a hook to get the visibility change',
+  },
+  usescript: {
+    title: 'useScript',
+    // icon: pinterest,
+    link: '/use-script',
+    text: 'a hook to load an external script',
   },
 };
 
