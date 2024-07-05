@@ -18,6 +18,7 @@ const websites = [
   'useorientation',
   'usesessionstorage',
   'usefetch',
+  'usevisibilitychange',
 ];
 
 const LINKS: { [key in SocialMedia]: Link } = {
@@ -80,6 +81,12 @@ const LINKS: { [key in SocialMedia]: Link } = {
     // icon: patreon,
     link: '/use-fetch',
     text: 'a hook to fetch data',
+  },
+  usevisibilitychange: {
+    title: 'useVisibilityChange',
+    // icon: paypal,
+    link: '/use-visibility-change',
+    text: 'a hook to get the visibility change',
   },
 };
 
