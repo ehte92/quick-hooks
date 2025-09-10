@@ -7,10 +7,16 @@ class MockIntersectionObserver {
   callback: IntersectionObserverCallback
   options: IntersectionObserverInit
   elements: Element[] = []
+  root: Element | Document | null = null
+  rootMargin: string = '0px'
+  thresholds: ReadonlyArray<number> = [0]
 
   constructor(callback: IntersectionObserverCallback, options?: IntersectionObserverInit) {
     this.callback = callback
     this.options = options || {}
+    this.root = options?.root || null
+    this.rootMargin = options?.rootMargin || '0px'
+    this.thresholds = Array.isArray(options?.threshold) ? options.threshold : [options?.threshold || 0]
     MockIntersectionObserver.instances.push(this)
   }
 
@@ -26,6 +32,10 @@ class MockIntersectionObserver {
     this.elements = []
   }
 
+  takeRecords(): IntersectionObserverEntry[] {
+    return []
+  }
+
   // Helper method to trigger intersection
   triggerIntersection(entries: Partial<IntersectionObserverEntry>[]) {
     const fullEntries = entries.map(entry => ({
@@ -39,12 +49,12 @@ class MockIntersectionObserver {
       ...entry
     })) as IntersectionObserverEntry[]
     
-    this.callback(fullEntries, this)
+    this.callback(fullEntries, this as unknown as IntersectionObserver)
   }
 
-  static readonly instances: MockIntersectionObserver[] = []
+  static instances: MockIntersectionObserver[] = []
   static reset() {
-    MockIntersectionObserver.instances = []
+    MockIntersectionObserver.instances.length = 0
   }
 }
 
@@ -72,7 +82,7 @@ describe('useIntersectionObserver', () => {
     renderHook(() => useIntersectionObserver())
 
     expect(MockIntersectionObserver.instances).toHaveLength(1)
-    const instance = MockIntersectionObserver.instances[0]
+    const instance = MockIntersectionObserver.instances[0]!
     expect(instance.options).toEqual({
       root: null,
       rootMargin: '0px',
@@ -90,7 +100,7 @@ describe('useIntersectionObserver', () => {
     renderHook(() => useIntersectionObserver(options))
 
     expect(MockIntersectionObserver.instances).toHaveLength(1)
-    const instance = MockIntersectionObserver.instances[0]
+    const instance = MockIntersectionObserver.instances[0]!
     expect(instance.options).toEqual(options)
   })
 
@@ -101,7 +111,7 @@ describe('useIntersectionObserver', () => {
 
     renderHook(() => useIntersectionObserver(options))
 
-    const instance = MockIntersectionObserver.instances[0]
+    const instance = MockIntersectionObserver.instances[0]!
     expect(instance.options.threshold).toEqual([0, 0.25, 0.5, 0.75, 1])
   })
 
@@ -118,7 +128,7 @@ describe('useIntersectionObserver', () => {
     // Re-render to trigger useEffect
     renderHook(() => useIntersectionObserver())
 
-    const instance = MockIntersectionObserver.instances[0]
+    const instance = MockIntersectionObserver.instances[0]!
     expect(instance.elements).toContain(mockElement)
   })
 
@@ -137,7 +147,7 @@ describe('useIntersectionObserver', () => {
     expect(result2.current[1]).toBe(false)
 
     // Trigger intersection
-    const instance = MockIntersectionObserver.instances[0]
+    const instance = MockIntersectionObserver.instances[0]!
     act(() => {
       instance.triggerIntersection([{
         isIntersecting: true,
@@ -160,7 +170,7 @@ describe('useIntersectionObserver', () => {
     const { result: result2 } = renderHook(() => useIntersectionObserver())
 
     // First make it visible
-    const instance = MockIntersectionObserver.instances[0]
+    const instance = MockIntersectionObserver.instances[0]!
     act(() => {
       instance.triggerIntersection([{
         isIntersecting: true,
@@ -194,7 +204,7 @@ describe('useIntersectionObserver', () => {
 
     const { result: result2 } = renderHook(() => useIntersectionObserver())
 
-    const instance = MockIntersectionObserver.instances[0]
+    const instance = MockIntersectionObserver.instances[0]!
     act(() => {
       instance.triggerIntersection([
         {
@@ -223,7 +233,7 @@ describe('useIntersectionObserver', () => {
 
     const { result: result2 } = renderHook(() => useIntersectionObserver())
 
-    const instance = MockIntersectionObserver.instances[0]
+    const instance = MockIntersectionObserver.instances[0]!
     instance.triggerIntersection([])
 
     // Should remain false when no entries
@@ -242,7 +252,7 @@ describe('useIntersectionObserver', () => {
     // Re-render to observe element
     renderHook(() => useIntersectionObserver())
 
-    const instance = MockIntersectionObserver.instances[0]
+    const instance = MockIntersectionObserver.instances[0]!
     expect(instance.elements).toContain(mockElement)
 
     // Unmount should trigger cleanup
@@ -269,7 +279,7 @@ describe('useIntersectionObserver', () => {
 
     rerender({ options })
 
-    const instance = MockIntersectionObserver.instances[0]
+    const instance = MockIntersectionObserver.instances[0]!
     expect(instance.elements).toContain(mockElement1)
 
     // Change ref to second element
@@ -294,13 +304,13 @@ describe('useIntersectionObserver', () => {
     )
 
     expect(MockIntersectionObserver.instances).toHaveLength(1)
-    expect(MockIntersectionObserver.instances[0].options.threshold).toBe(0.5)
+    expect(MockIntersectionObserver.instances[0]!.options.threshold).toBe(0.5)
 
     // Change options
     rerender({ options: newOptions })
 
     expect(MockIntersectionObserver.instances).toHaveLength(2)
-    expect(MockIntersectionObserver.instances[1].options.threshold).toBe(0.8)
+    expect(MockIntersectionObserver.instances[1]!.options.threshold).toBe(0.8)
   })
 
   it('should handle rootMargin option changes', () => {
@@ -312,11 +322,11 @@ describe('useIntersectionObserver', () => {
       { initialProps: { options: initialOptions } }
     )
 
-    expect(MockIntersectionObserver.instances[0].options.rootMargin).toBe('10px')
+    expect(MockIntersectionObserver.instances[0]!.options.rootMargin).toBe('10px')
 
     rerender({ options: newOptions })
 
-    expect(MockIntersectionObserver.instances[1].options.rootMargin).toBe('20px')
+    expect(MockIntersectionObserver.instances[1]!.options.rootMargin).toBe('20px')
   })
 
   it('should handle root option changes', () => {
@@ -328,11 +338,11 @@ describe('useIntersectionObserver', () => {
       { initialProps: { root: initialRoot } }
     )
 
-    expect(MockIntersectionObserver.instances[0].options.root).toBe(initialRoot)
+    expect(MockIntersectionObserver.instances[0]!.options.root).toBe(initialRoot)
 
     rerender({ root: newRoot })
 
-    expect(MockIntersectionObserver.instances[1].options.root).toBe(newRoot)
+    expect(MockIntersectionObserver.instances[1]!.options.root).toBe(newRoot)
   })
 
   it('should not observe when ref.current is null', () => {
@@ -341,7 +351,7 @@ describe('useIntersectionObserver', () => {
     // ref.current is null by default
     expect(result.current[0].current).toBe(null)
 
-    const instance = MockIntersectionObserver.instances[0]
+    const instance = MockIntersectionObserver.instances[0]!
     expect(instance.elements).toHaveLength(0)
   })
 
