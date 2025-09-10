@@ -52,7 +52,7 @@ class MockIntersectionObserver {
     this.callback(fullEntries, this as unknown as IntersectionObserver)
   }
 
-  static instances: MockIntersectionObserver[] = []
+  static readonly instances: MockIntersectionObserver[] = []
   static reset() {
     MockIntersectionObserver.instances.length = 0
   }
