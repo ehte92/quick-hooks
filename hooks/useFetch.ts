@@ -26,7 +26,8 @@ function useFetch<T>(url: string, options?: RequestInit): FetchResult<T> {
       setResult({ data: null, error: null, loading: true });
 
       // Create a unique cache key based on URL and stringified options
-      const cacheKey = JSON.stringify({ url, options });
+      const optionsStr = JSON.stringify(options);
+      const cacheKey = JSON.stringify({ url, options: optionsStr });
 
       if (cache.has(cacheKey)) {
         setResult({ data: cache.get(cacheKey), error: null, loading: false });
@@ -47,6 +48,7 @@ function useFetch<T>(url: string, options?: RequestInit): FetchResult<T> {
     };
 
     fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [url, JSON.stringify(options)]); // Dependency on options as a string to handle object comparison
 
   return result;

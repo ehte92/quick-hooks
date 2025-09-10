@@ -1,19 +1,16 @@
-const websites = [
-  'usedebounce',
-  'uselocalstorage',
-  'usewindowsize',
-  'useprevious',
-  'useintersectionobserver',
-  'usenetworkstate',
-  'usemediaquery',
-  'useorientation',
-  'usesessionstorage',
-  'usefetch',
-  'usevisibilitychange',
-  'usescript',
-] as const;
-
-type SocialMedia = (typeof websites)[number];
+type SocialMedia = 
+  | 'usedebounce'
+  | 'uselocalstorage'
+  | 'usewindowsize'
+  | 'useprevious'
+  | 'useintersectionobserver'
+  | 'usenetworkstate'
+  | 'usemediaquery'
+  | 'useorientation'
+  | 'usesessionstorage'
+  | 'usefetch'
+  | 'usevisibilitychange'
+  | 'usescript';
 
 type Link = {
   title: string;

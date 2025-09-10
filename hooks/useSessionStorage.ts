@@ -17,13 +17,12 @@ function useSessionStorage<T>(
 
     try {
       const item = window.sessionStorage.getItem(key);
-      return item
-        ? JSON.parse(item)
-        : initialValue instanceof Function
-          ? initialValue()
-          : initialValue;
+      if (item) {
+        return JSON.parse(item);
+      }
+      return initialValue instanceof Function ? initialValue() : initialValue;
     } catch (error) {
-      console.warn(`Error reading sessionStorage key “${key}”:`, error);
+      console.warn(`Error reading sessionStorage key "${key}":`, error);
       return initialValue instanceof Function ? initialValue() : initialValue;
     }
   };
@@ -50,7 +49,7 @@ function useSessionStorage<T>(
       // Save to session storage
       window.sessionStorage.setItem(key, JSON.stringify(valueToStore));
     } catch (error) {
-      console.warn(`Error setting sessionStorage key “${key}”:`, error);
+      console.warn(`Error setting sessionStorage key "${key}":`, error);
     }
   };
 
@@ -65,7 +64,8 @@ function useSessionStorage<T>(
     window.addEventListener('storage', handleStorageChange);
     // Clean up the event listener when the component unmounts
     return () => window.removeEventListener('storage', handleStorageChange);
-  }, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [key]);
 
   return [storedValue, setValue];
 }

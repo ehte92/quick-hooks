@@ -19,11 +19,10 @@ function useLocalStorage<T>(
 
     try {
       const item = window.localStorage.getItem(key);
-      return item
-        ? JSON.parse(item)
-        : initialValue instanceof Function
-          ? initialValue()
-          : initialValue;
+      if (item) {
+        return JSON.parse(item);
+      }
+      return initialValue instanceof Function ? initialValue() : initialValue;
     } catch (error) {
       console.warn(`Error reading localStorage key “${key}”:`, error);
       return initialValue instanceof Function ? initialValue() : initialValue;
@@ -60,6 +59,7 @@ function useLocalStorage<T>(
 
   useEffect(() => {
     setStoredValue(readValue());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -71,7 +71,8 @@ function useLocalStorage<T>(
 
     window.addEventListener('storage', handleStorageChange);
     return () => window.removeEventListener('storage', handleStorageChange);
-  }, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps  
+  }, [key]);
 
   return [storedValue, setValue];
 }

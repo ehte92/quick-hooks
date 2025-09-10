@@ -20,11 +20,12 @@ const UseScriptExample = () => {
     'https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js'
   );
   const canvasRef = useRef(null);
+  const p5InstanceRef = useRef<unknown>(null);
 
   useEffect(() => {
     if (status === 'ready' && (window as unknown as { p5?: unknown }).p5) {
       const P5 = (window as unknown as { p5: new (sketch: (p: unknown) => void) => void }).p5;
-      new P5((p: unknown) => {
+      p5InstanceRef.current = new P5((p: unknown) => {
         const sketch = p as {
           setup: () => void;
           draw: () => void;

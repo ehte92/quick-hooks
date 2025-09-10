@@ -16,13 +16,12 @@ export const createStorageEventMock = (
   oldValue: string | null = null,
   storageArea: Storage = window.localStorage
 ) => {
-  const event = new StorageEvent('storage', {
+  return new StorageEvent('storage', {
     key,
     newValue,
     oldValue,
     storageArea,
   })
-  return event
 }
 
 // Helper to trigger window resize events

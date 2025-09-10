@@ -1,5 +1,11 @@
 import { useEffect, useState } from 'react';
 
+interface NetworkInformation extends EventTarget {
+  rtt: number;
+  downlink: number;
+  effectiveType: 'slow-2g' | '2g' | '3g' | '4g';
+}
+
 interface NetworkState {
   online: boolean;
   since?: Date;
@@ -15,7 +21,7 @@ interface NetworkState {
 function useNetworkState(): NetworkState {
   // Function to safely access the connection object
   const getConnection = () => {
-    return (navigator as any).connection || null;
+    return (navigator as unknown as { connection?: NetworkInformation }).connection || null;
   };
 
   // Initial state setup using the connection object
