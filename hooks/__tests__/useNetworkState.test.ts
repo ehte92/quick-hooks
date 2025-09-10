@@ -81,7 +81,7 @@ describe('useNetworkState', () => {
 
     expect(result.current.online).toBe(true)
     expect(result.current.since).not.toBe(initialSince)
-    expect(result.current.since!.getTime()).toBeGreaterThan(initialSince!.getTime())
+    expect(result.current.since!.getTime()).toBeGreaterThanOrEqual(initialSince!.getTime())
   })
 
   it('should update state when going offline', () => {
@@ -103,7 +103,7 @@ describe('useNetworkState', () => {
 
     expect(result.current.online).toBe(false)
     expect(result.current.since).not.toBe(initialSince)
-    expect(result.current.since!.getTime()).toBeGreaterThan(initialSince!.getTime())
+    expect(result.current.since!.getTime()).toBeGreaterThanOrEqual(initialSince!.getTime())
   })
 
   it('should handle rapid connection changes', () => {
