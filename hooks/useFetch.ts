@@ -8,6 +8,9 @@ interface FetchResult<T> {
 
 const cache = new Map();
 
+// Export cache for testing
+export { cache };
+
 /**
  * Custom hook for fetching data with state management and caching.
  * @param url The URL to fetch data from.
