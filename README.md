@@ -2,7 +2,7 @@
 
 > A comprehensive collection of high-quality React hooks built with TypeScript and modern web standards.
 
-[![Test Status](https://github.com/yourusername/quick-hooks/actions/workflows/test.yml/badge.svg)](https://github.com/yourusername/quick-hooks/actions/workflows/test.yml)
+[![Test Status](https://github.com/ehte92/quick-hooks/actions/workflows/test.yml/badge.svg)](https://github.com/ehte92/quick-hooks/actions/workflows/test.yml)
 [![TypeScript](https://img.shields.io/badge/%3C%2F%3E-TypeScript-%230074c1.svg)](http://www.typescriptlang.org/)
 [![Next.js](https://img.shields.io/badge/Next.js-15-black)](https://nextjs.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
@@ -47,7 +47,7 @@
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/quick-hooks.git
+git clone https://github.com/ehte92/quick-hooks.git
 cd quick-hooks
 
 # Install dependencies  
