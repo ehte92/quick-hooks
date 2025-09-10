@@ -8,7 +8,7 @@ import { useEffect, useState } from 'react';
 function useSessionStorage<T>(
   key: string,
   initialValue: T | (() => T)
-): [T, (value: T) => void] {
+): [T, (value: T | ((val: T) => T)) => void] {
   // Get the initial value from session storage or use a provided initial value
   const readValue = (): T => {
     if (typeof window === 'undefined') {

@@ -88,8 +88,8 @@ describe('usePrevious', () => {
 
   it('should handle null and undefined values', () => {
     const { result, rerender } = renderHook(
-      ({ value }) => usePrevious(value),
-      { initialProps: { value: null } }
+      ({ value }: { value: string | null | undefined }) => usePrevious(value),
+      { initialProps: { value: null as string | null | undefined } }
     )
 
     expect(result.current).toBeUndefined()
