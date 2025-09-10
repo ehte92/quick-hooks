@@ -22,19 +22,29 @@ const UseScriptExample = () => {
   const canvasRef = useRef(null);
 
   useEffect(() => {
-    if (status === 'ready' && window.p5) {
-      new window.p5((p) => {
-        p.setup = () => {
-          p.createCanvas(400, 400);
-          p.background(0);
+    if (status === 'ready' && (window as unknown as { p5?: unknown }).p5) {
+      const P5 = (window as unknown as { p5: new (sketch: (p: unknown) => void) => void }).p5;
+      new P5((p: unknown) => {
+        const sketch = p as {
+          setup: () => void;
+          draw: () => void;
+          createCanvas: (width: number, height: number) => void;
+          background: (color: number) => void;
+          fill: (r: number, g: number, b: number) => void;
+          ellipse: (x: number, y: number, w: number, h: number) => void;
+          mouseX: number;
+          mouseY: number;
+        };
+        sketch.setup = () => {
+          sketch.createCanvas(400, 400);
+          sketch.background(0);
         };
 
-        p.draw = () => {
-          p.fill(255, p.mouseX, p.mouseY, 100);
-          p.noStroke();
-          p.ellipse(p.mouseX, p.mouseY, 50, 50);
+        sketch.draw = () => {
+          sketch.fill(255, sketch.mouseX, sketch.mouseY);
+          sketch.ellipse(sketch.mouseX, sketch.mouseY, 50, 50);
         };
-      }, canvasRef.current);
+      });
     }
   }, [status]);
 

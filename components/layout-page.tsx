@@ -1,7 +1,5 @@
 import React from 'react';
 
-import { title } from 'process';
-
 import BackButton from './ui/back-button';
 
 interface LayoutPageProps {

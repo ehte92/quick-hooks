@@ -1,12 +1,3 @@
-type SocialMedia = (typeof websites)[number];
-
-type Link = {
-  title: string;
-  icon?: any;
-  link: string;
-  text?: string;
-};
-
 const websites = [
   'usedebounce',
   'uselocalstorage',
@@ -20,7 +11,16 @@ const websites = [
   'usefetch',
   'usevisibilitychange',
   'usescript',
-];
+] as const;
+
+type SocialMedia = (typeof websites)[number];
+
+type Link = {
+  title: string;
+  icon?: unknown;
+  link: string;
+  text?: string;
+};
 
 const LINKS: { [key in SocialMedia]: Link } = {
   usedebounce: {

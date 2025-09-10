@@ -1,12 +1,11 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import Marquee from 'react-fast-marquee';
 
 import LINKS from '@/app/links';
 
 export default function Features() {
-  const router = useRouter();
   return (
     <div>
       <section className="border-t-border dark:border-t-darkBorder dark:bg-darkBg border-t-2 bg-bg py-20 font-base lg:py-[100px]">
@@ -16,19 +15,15 @@ export default function Features() {
 
         <div className="mx-auto grid w-container max-w-full grid-cols-1 gap-5 px-5 sm:grid-cols-2 lg:grid-cols-3">
           {Object.keys(LINKS).map((key, index) => {
-            const hook = LINKS[key];
+            const hook = LINKS[key as keyof typeof LINKS];
             if (!hook) return null; // Guard clause to check for undefined
             return (
-              <div
-                className="border-border dark:border-darkBorder dark:bg-darkBg shadow-light dark:shadow-dark flex flex-col gap-3 rounded-base border-2 bg-white p-5 hover:translate-y-boxShadowY hover:shadow-none dark:hover:shadow-none cursor-pointer transition-all"
-                key={index}
-                onClick={() => {
-                  router.push(hook.link);
-                }}
-              >
-                <h4 className="mt-2 text-xl font-heading">{hook.title}</h4>
-                <p>{hook.text}</p>
-              </div>
+              <Link href={hook.link} key={index}>
+                <div className="border-border dark:border-darkBorder dark:bg-darkBg shadow-light dark:shadow-dark flex flex-col gap-3 rounded-base border-2 bg-white p-5 hover:translate-y-boxShadowY hover:shadow-none dark:hover:shadow-none cursor-pointer transition-all">
+                  <h4 className="mt-2 text-xl font-heading">{hook.title}</h4>
+                  <p>{hook.text}</p>
+                </div>
+              </Link>
             );
           })}
         </div>
@@ -39,7 +34,7 @@ export default function Features() {
           direction="left"
         >
           {Object.keys(LINKS).map((key, index) => {
-            const hook = LINKS[key];
+            const hook = LINKS[key as keyof typeof LINKS];
             if (!hook) return null; // Guard clause to check for undefined
             return (
               <div className="flex items-center justify-center" key={index}>

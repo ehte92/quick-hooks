@@ -88,15 +88,21 @@ export default MediaQueryComponent;
       <Heading>Live Example</Heading>
       <div className="text-lg p-4">
         <div
-          className={`p-4 ${isDesktop ? 'bg-blue-500' : isTablet ? 'bg-green-500' : 'bg-red-500'} transition-all duration-500 rounded-base border shadow-light dark:shadow-dark`}
+          className={`p-4 transition-all duration-500 rounded-base border shadow-light dark:shadow-dark ${
+            (() => {
+              if (isDesktop) return 'bg-blue-500';
+              if (isTablet) return 'bg-green-500';
+              return 'bg-red-500';
+            })()
+          }`}
         >
           <p className="font-bold">
             Current Viewport:{' '}
-            {isDesktop
-              ? 'Desktop View'
-              : isTablet
-                ? 'Tablet View'
-                : 'Mobile View'}
+            {(() => {
+              if (isDesktop) return 'Desktop View';
+              if (isTablet) return 'Tablet View';
+              return 'Mobile View';
+            })()}
           </p>
           <p>
             Resize the browser to see the color change based on the current

@@ -6,10 +6,12 @@ import { useEffect, useState } from 'react';
  */
 function useVisibilityChange(): boolean {
   const [isVisible, setIsVisible] = useState(
-    document.visibilityState === 'visible'
+    typeof document !== 'undefined' ? document.visibilityState === 'visible' : true
   );
 
   useEffect(() => {
+    if (typeof document === 'undefined') return;
+    
     const handleVisibilityChange = () => {
       setIsVisible(document.visibilityState === 'visible');
     };

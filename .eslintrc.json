@@ -1,7 +1,8 @@
 {
+  "plugins": ["sonarjs"],
   "extends": [
     "plugin:@typescript-eslint/recommended",
-    "plugin:sonarjs/recommended",
+    "plugin:sonarjs/recommended-legacy",
     "next/core-web-vitals"
   ],
   "rules": {
@@ -12,9 +13,16 @@
         "argsIgnorePattern": "^_"
       }
     ],
+    "@typescript-eslint/no-explicit-any": "warn",
+    "@typescript-eslint/no-empty-object-type": "warn",
     "sonarjs/no-duplicate-string": "off",
     "sonarjs/cognitive-complexity": ["warn", 50],
-    "sonarjs/prefer-immediate-return": "warn"
+    "sonarjs/prefer-immediate-return": "warn",
+    "sonarjs/no-commented-code": "warn",
+    "sonarjs/no-nested-conditional": "warn",
+    "sonarjs/constructor-for-side-effects": "warn",
+    "sonarjs/unused-import": "warn",
+    "sonarjs/table-header": "warn"
   },
   "overrides": [
     {

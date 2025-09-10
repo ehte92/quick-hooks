@@ -16,15 +16,19 @@ interface OrientationState {
  */
 function useOrientation(): OrientationState {
   const [orientation, setOrientation] = useState<OrientationState>({
-    angle: window.screen.orientation.angle,
-    type: window.screen.orientation.type as
-      | 'portrait-primary'
-      | 'portrait-secondary'
-      | 'landscape-primary'
-      | 'landscape-secondary',
+    angle: typeof window !== 'undefined' ? window.screen.orientation.angle : 0,
+    type: typeof window !== 'undefined' 
+      ? (window.screen.orientation.type as
+          | 'portrait-primary'
+          | 'portrait-secondary'
+          | 'landscape-primary'
+          | 'landscape-secondary')
+      : undefined,
   });
 
   useEffect(() => {
+    if (typeof window === 'undefined') return;
+    
     const handleOrientationChange = () => {
       setOrientation({
         angle: window.screen.orientation.angle,

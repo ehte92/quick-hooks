@@ -58,7 +58,6 @@ const useFetchPage = () => {
     `https://rickandmortyapi.com/api/character/${count}`
   );
 
-  // if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error.message}</div>;
 
   const code = `

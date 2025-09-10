@@ -4,7 +4,6 @@ import React from 'react';
 
 import CodeBlock from '@/components/code-block';
 import LayoutPage from '@/components/layout-page';
-import BackButton from '@/components/ui/back-button';
 import Heading from '@/components/ui/heading';
 import {
   Table,
