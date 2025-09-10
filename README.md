@@ -9,11 +9,11 @@
 
 ## 🚀 Features
 
-- **12 Production-Ready Hooks** - Carefully crafted for real-world applications
+- **15 Production-Ready Hooks** - Carefully crafted for real-world applications
 - **TypeScript First** - Full type safety with generic support and strict mode
 - **SSR Compatible** - Works seamlessly with Next.js and other SSR frameworks  
 - **Zero Dependencies** - Lightweight and self-contained
-- **Comprehensive Testing** - 110+ tests ensuring reliability and edge case coverage
+- **Comprehensive Testing** - 150+ tests ensuring reliability and edge case coverage
 - **Modern Browser APIs** - Leverages latest web standards with graceful fallbacks
 - **Dark Mode Support** - Beautiful documentation site with theme switching
 - **Responsive Design** - Mobile-friendly documentation and examples
@@ -34,6 +34,9 @@
 | [useSessionStorage](#usesessionstorage) | Temporary state with sessionStorage persistence | ✅ | 7 tests |
 | [useVisibilityChange](#usevisibilitychange) | Document visibility changes (tab switching) | ✅ | 3 tests |
 | [useWindowSize](#usewindowsize) | Window dimensions with resize handling | ✅ | 6 tests |
+| [useToggle](#usetoggle) | Boolean state management with toggle functionality | ✅ | 10 tests |
+| [useCounter](#usecounter) | Numeric state with increment, decrement, and boundaries | ✅ | 20 tests |
+| [useCopyToClipboard](#usecopytoclipboard) | Copy text to clipboard with fallback support | ✅ | 10 tests |
 
 ## 🚀 Quick Start
 

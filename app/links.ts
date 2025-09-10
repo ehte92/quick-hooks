@@ -10,7 +10,10 @@ type SocialMedia =
   | 'usesessionstorage'
   | 'usefetch'
   | 'usevisibilitychange'
-  | 'usescript';
+  | 'usescript'
+  | 'usetoggle'
+  | 'usecounter'
+  | 'usecopytoclipboard';
 
 type Link = {
   title: string;
@@ -91,6 +94,21 @@ const LINKS: { [key in SocialMedia]: Link } = {
     // icon: pinterest,
     link: '/use-script',
     text: 'a hook to load an external script',
+  },
+  usetoggle: {
+    title: 'useToggle',
+    link: '/use-toggle',
+    text: 'a hook for managing boolean state with toggle functionality',
+  },
+  usecounter: {
+    title: 'useCounter',
+    link: '/use-counter',
+    text: 'a hook for numeric state with increment, decrement, and boundaries',
+  },
+  usecopytoclipboard: {
+    title: 'useCopyToClipboard',
+    link: '/use-copy-to-clipboard',
+    text: 'a hook for copying text to clipboard with fallback support',
   },
 };
 
