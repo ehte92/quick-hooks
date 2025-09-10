@@ -181,7 +181,7 @@ describe('useCopyToClipboard', () => {
       result.current.copy('Text 3'),
     ]
     
-    let results: boolean[]
+    let results: boolean[] = []
     
     await act(async () => {
       results = await Promise.all(promises)
