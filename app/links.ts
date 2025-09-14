@@ -1,4 +1,4 @@
-type SocialMedia = 
+type SocialMedia =
   | 'usedebounce'
   | 'uselocalstorage'
   | 'usewindowsize'
@@ -13,7 +13,10 @@ type SocialMedia =
   | 'usescript'
   | 'usetoggle'
   | 'usecounter'
-  | 'usecopytoclipboard';
+  | 'usecopytoclipboard'
+  | 'usehover'
+  | 'useclickoutside'
+  | 'usetimeout';
 
 type Link = {
   title: string;
@@ -109,6 +112,21 @@ const LINKS: { [key in SocialMedia]: Link } = {
     title: 'useCopyToClipboard',
     link: '/use-copy-to-clipboard',
     text: 'a hook for copying text to clipboard with fallback support',
+  },
+  usehover: {
+    title: 'useHover',
+    link: '/use-hover',
+    text: 'a hook for detecting hover state on DOM elements with callback refs',
+  },
+  useclickoutside: {
+    title: 'useClickOutside',
+    link: '/use-click-outside',
+    text: 'a hook for detecting clicks outside specified elements',
+  },
+  usetimeout: {
+    title: 'useTimeout',
+    link: '/use-timeout',
+    text: 'a hook for managing timeouts with automatic cleanup and control functions',
   },
 };
 

@@ -9,11 +9,11 @@
 
 ## 🚀 Features
 
-- **15 Production-Ready Hooks** - Carefully crafted for real-world applications
+- **18 Production-Ready Hooks** - Carefully crafted for real-world applications
 - **TypeScript First** - Full type safety with generic support and strict mode
-- **SSR Compatible** - Works seamlessly with Next.js and other SSR frameworks  
+- **SSR Compatible** - Works seamlessly with Next.js and other SSR frameworks
 - **Zero Dependencies** - Lightweight and self-contained
-- **Comprehensive Testing** - 150+ tests ensuring reliability and edge case coverage
+- **Comprehensive Testing** - 200+ tests ensuring reliability and edge case coverage
 - **Modern Browser APIs** - Leverages latest web standards with graceful fallbacks
 - **Dark Mode Support** - Beautiful documentation site with theme switching
 - **Responsive Design** - Mobile-friendly documentation and examples
@@ -37,6 +37,9 @@
 | [useToggle](#usetoggle) | Boolean state management with toggle functionality | ✅ | 10 tests |
 | [useCounter](#usecounter) | Numeric state with increment, decrement, and boundaries | ✅ | 20 tests |
 | [useCopyToClipboard](#usecopytoclipboard) | Copy text to clipboard with fallback support | ✅ | 10 tests |
+| [useHover](#usehover) | Detect hover state on DOM elements with callback refs | ✅ | 14 tests |
+| [useClickOutside](#useclickoutside) | Detect clicks outside specified elements | ✅ | 15 tests |
+| [useTimeout](#usetimeout) | Manage timeouts with automatic cleanup and control functions | ✅ | 20 tests |
 
 ## 🚀 Quick Start
 
@@ -224,7 +227,7 @@ yarn test --watch
 ```
 
 ### Test Coverage Highlights
-- **110+ passing tests** across all hooks
+- **200+ passing tests** across all hooks
 - **Edge case coverage** including SSR scenarios
 - **Error condition testing** for robust error handling
 - **Performance testing** for memory leaks and optimization
