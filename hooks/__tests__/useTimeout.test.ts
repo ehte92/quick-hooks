@@ -141,7 +141,7 @@ describe('useTimeout', () => {
   })
 
   it('should handle delay changes by restarting the timeout', () => {
-    const { rerender } = renderHook(
+    const { rerender } = renderHook<any, { delay: number | null }>(
       ({ delay }) => useTimeout(mockCallback, delay),
       { initialProps: { delay: 1000 } }
     )
@@ -311,7 +311,7 @@ describe('useTimeout', () => {
   })
 
   it('should handle changing from null to valid delay', () => {
-    const { rerender } = renderHook(
+    const { rerender } = renderHook<any, { delay: number | null }>(
       ({ delay }) => useTimeout(mockCallback, delay),
       { initialProps: { delay: null } }
     )
@@ -333,7 +333,7 @@ describe('useTimeout', () => {
   })
 
   it('should handle changing from valid delay to null', () => {
-    const { rerender } = renderHook(
+    const { rerender } = renderHook<any, { delay: number | null }>(
       ({ delay }) => useTimeout(mockCallback, delay),
       { initialProps: { delay: 1000 } }
     )
@@ -353,7 +353,7 @@ describe('useTimeout', () => {
   })
 
   it('should handle rapid delay changes', () => {
-    const { rerender } = renderHook(
+    const { rerender } = renderHook<any, { delay: number | null }>(
       ({ delay }) => useTimeout(mockCallback, delay),
       { initialProps: { delay: 1000 } }
     )
