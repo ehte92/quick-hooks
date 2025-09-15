@@ -16,7 +16,10 @@ type SocialMedia =
   | 'usecopytoclipboard'
   | 'usehover'
   | 'useclickoutside'
-  | 'usetimeout';
+  | 'usetimeout'
+  | 'useinterval'
+  | 'useeventlistener'
+  | 'usegeolocation';
 
 type Link = {
   title: string;
@@ -127,6 +130,21 @@ const LINKS: { [key in SocialMedia]: Link } = {
     title: 'useTimeout',
     link: '/use-timeout',
     text: 'a hook for managing timeouts with automatic cleanup and control functions',
+  },
+  useinterval: {
+    title: 'useInterval',
+    link: '/use-interval',
+    text: 'a hook for managing intervals with automatic cleanup and control functions',
+  },
+  useeventlistener: {
+    title: 'useEventListener',
+    link: '/use-event-listener',
+    text: 'a hook for universal event listener management with type safety',
+  },
+  usegeolocation: {
+    title: 'useGeolocation',
+    link: '/use-geolocation',
+    text: 'a hook for accessing device location with comprehensive error handling',
   },
 };
 
