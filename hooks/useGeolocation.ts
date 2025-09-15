@@ -80,6 +80,7 @@ function useGeolocation(
 
     if (watch && !isWatchingRef.current) {
       // Start watching position
+      // eslint-disable-next-line sonarjs/no-intrusive-permissions
       watchIdRef.current = navigator.geolocation.watchPosition(
         onSuccess,
         onError,
@@ -88,6 +89,7 @@ function useGeolocation(
       isWatchingRef.current = true;
     } else if (!watch) {
       // Get current position once
+      // eslint-disable-next-line sonarjs/no-intrusive-permissions
       navigator.geolocation.getCurrentPosition(onSuccess, onError, options);
     }
   }, [onSuccess, onError, options, watch]);
