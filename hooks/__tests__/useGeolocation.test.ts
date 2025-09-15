@@ -19,8 +19,10 @@ const mockPosition: GeolocationPosition = {
     latitude: 37.7749,
     longitude: -122.4194,
     speed: 0,
+    toJSON: () => ({}),
   },
   timestamp: Date.now(),
+  toJSON: () => ({}),
 }
 
 // Mock error
@@ -340,8 +342,8 @@ describe('useGeolocation', () => {
     })
 
     const { result, rerender } = renderHook(
-      ({ options }) => useGeolocation(options),
-      { initialProps: { options: undefined } }
+      ({ options }: { options: PositionOptions | undefined }) => useGeolocation(options),
+      { initialProps: { options: undefined as PositionOptions | undefined } }
     )
 
     // Wait for initial load
@@ -402,8 +404,10 @@ describe('useGeolocation', () => {
         latitude: 40.7128,
         longitude: -74.0060,
         speed: 5.5,
+        toJSON: () => ({}),
       },
       timestamp: 1234567890,
+      toJSON: () => ({}),
     }
 
     mockGeolocation.getCurrentPosition.mockImplementation((success) => {
@@ -436,8 +440,10 @@ describe('useGeolocation', () => {
         latitude: 37.7749,
         longitude: -122.4194,
         speed: null,
+        toJSON: () => ({}),
       },
       timestamp: Date.now(),
+      toJSON: () => ({}),
     }
 
     mockGeolocation.getCurrentPosition.mockImplementation((success) => {

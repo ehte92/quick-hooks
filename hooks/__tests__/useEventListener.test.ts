@@ -161,7 +161,7 @@ describe('useEventListener', () => {
     // Trigger event - should call new handler through the saved listener
     if (actualEventListener) {
       const clickEvent = new MouseEvent('click')
-      actualEventListener(clickEvent)
+      ;(actualEventListener as EventListener)(clickEvent)
 
       expect(handler1).not.toHaveBeenCalled()
       expect(handler2).toHaveBeenCalledWith(clickEvent)
@@ -175,14 +175,14 @@ describe('useEventListener', () => {
     element.removeEventListener = removeEventListener
 
     const { rerender } = renderHook(
-      ({ eventName }) => useEventListener(eventName, handler, element),
-      { initialProps: { eventName: 'click' as const } }
+      ({ eventName }: { eventName: keyof HTMLElementEventMap }) => useEventListener(eventName, handler, element),
+      { initialProps: { eventName: 'click' as keyof HTMLElementEventMap } }
     )
 
     expect(addEventListener).toHaveBeenCalledWith('click', expect.any(Function), undefined)
 
     // Change event name
-    rerender({ eventName: 'mousedown' as const })
+    rerender({ eventName: 'mousedown' as keyof HTMLElementEventMap })
 
     expect(removeEventListener).toHaveBeenCalledWith('click', expect.any(Function), undefined)
     expect(addEventListener).toHaveBeenCalledWith('mousedown', expect.any(Function), undefined)
@@ -219,8 +219,8 @@ describe('useEventListener', () => {
     element.removeEventListener = removeEventListener
 
     const { rerender } = renderHook(
-      ({ options }) => useEventListener('click', handler, element, options),
-      { initialProps: { options: undefined } }
+      ({ options }: { options: boolean | AddEventListenerOptions | undefined }) => useEventListener('click', handler, element, options),
+      { initialProps: { options: undefined as boolean | AddEventListenerOptions | undefined } }
     )
 
     expect(addEventListener).toHaveBeenCalledWith('click', expect.any(Function), undefined)
